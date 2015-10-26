@@ -7,5 +7,9 @@
         <item>Mountain (UTC-07:00)</item>
         <item>Pacific (UTC-08:00)</item>
     </string-array>
-    <string name="post_to">Post to (where we decide to post stuff)</string>
+
+    <string name="posting_title">Title of post:</string>
+    <string name="posting_body">Body of post:</string>
+    <string name="posting_create">Create post on Reddit</string>
+    <string name="post_to">Post to Reddit</string>
 </resources>
