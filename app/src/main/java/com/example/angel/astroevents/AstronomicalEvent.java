@@ -1,9 +1,20 @@
 package com.example.angel.astroevents;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by boydjohnson on 10/26/15.
  */
 public class AstronomicalEvent {
+    private static final String JSON_YEAR = "EVENT YEAR";
+    private static final String JSON_DAY_OF_WEEK = "EVENT DAYOFWEEK";
+    private static final String JSON_MONTH = "EVENT MONTH";
+    private static final String JSON_DAY = "EVENT DAY";
+    private static final String JSON_EVENT = "EVENT EVENT";
+    private static final String JSON_TIME = "EVENT TIME";
+
+
     private String year;
     private String time_zone;
     private String day_of_week;
@@ -14,6 +25,17 @@ public class AstronomicalEvent {
 
     public String getYear() {
         return year;
+    }
+
+    public AstronomicalEvent(JSONObject json) throws JSONException{
+        day = json.getInt(JSON_DAY);
+        year = json.getString(JSON_YEAR);
+        day_of_week = json.getString(JSON_DAY_OF_WEEK);
+        month = json.getString(JSON_MONTH);
+        event_name = json.getString(JSON_EVENT);
+        time = json.getString(JSON_TIME);
+
+
     }
 
     public void setYear(String year) {
@@ -66,5 +88,10 @@ public class AstronomicalEvent {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+@Override
+    public String toString(){
+        return event_name;
     }
 }
