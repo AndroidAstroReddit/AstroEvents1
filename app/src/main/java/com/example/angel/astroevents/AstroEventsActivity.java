@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +43,7 @@ public class AstroEventsActivity extends ListActivity {
         lstView.setTextFilterEnabled(true);
         BufferedReader reader = null;
         try {
-            InputStream in = this.getResources().openRawResource(R.raw.all_of_them);
+            InputStream in = this.getResources().openRawResource(R.raw.all_of_them2);
             reader = new BufferedReader(new InputStreamReader(in));
 
             StringBuilder jsonString = new StringBuilder();
@@ -58,17 +59,15 @@ public class AstroEventsActivity extends ListActivity {
                     events.add(new AstronomicalEvent(array.getJSONObject(i)));
                 }
             }
-        }
-            catch(Exception e)
-            {
-
-            }
-
-            setListAdapter(new EventAdapter(this, android.R.layout.simple_list_item_1, events));
-
-
+            Log.i("events.size()", events.size()+" ");
+        } catch (Exception e) {
+            Log.e("Json error", e.toString());
         }
 
+        setListAdapter(new EventAdapter(this, android.R.layout.simple_list_item_1, events));
+
+
+    }
 
 
     public void onListItemClick(ListView parent, View v, int position, long id) {

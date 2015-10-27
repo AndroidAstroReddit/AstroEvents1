@@ -37,4 +37,9 @@ public class EventAdapter extends ArrayAdapter<AstronomicalEvent> {
         return convertView;
     }
 
+    @Override
+    public int getCount(){
+        return mEvents.size();
+    }
+
 }
