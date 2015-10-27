@@ -19,7 +19,7 @@ public class AstronomicalEvent {
     private String time_zone;
     private String day_of_week;
     private String month;
-    private Integer day;
+    private String day;
     private String event_name;
     private String time;
 
@@ -28,11 +28,11 @@ public class AstronomicalEvent {
     }
 
     public AstronomicalEvent(JSONObject json) throws JSONException{
-        day = json.getInt(JSON_DAY);
+        day = json.getString(JSON_DAY);
         year = json.getString(JSON_YEAR);
         day_of_week = json.getString(JSON_DAY_OF_WEEK);
         month = json.getString(JSON_MONTH);
-//        event_name = json.getString(JSON_EVENT);
+        event_name = json.getString(JSON_EVENT);
         time = json.getString(JSON_TIME);
 
 
@@ -66,11 +66,11 @@ public class AstronomicalEvent {
         this.month = month;
     }
 
-    public Integer getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(Integer day) {
+    public void setDay(String day) {
         this.day = day;
     }
 

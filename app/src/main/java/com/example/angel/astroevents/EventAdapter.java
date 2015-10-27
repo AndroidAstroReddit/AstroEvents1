@@ -33,7 +33,7 @@ public class EventAdapter extends ArrayAdapter<AstronomicalEvent> {
         AstronomicalEvent event = this.mEvents.get(position);
         String text = String.format("%s : %s %s %s %s %s", event.getEvent_name(), event.getMonth(), event.getDay(),
                 event.getDay_of_week(), event.getTime(), event.getYear());
-
+        tv.setText(text);
         return convertView;
     }
 

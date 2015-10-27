@@ -43,9 +43,9 @@ public class AstroEventsActivity extends ListActivity {
         lstView.setTextFilterEnabled(true);
         BufferedReader reader = null;
         try {
-            InputStream in = this.getResources().openRawResource(R.raw.all_of_them2);
+            InputStream in = this.getResources().openRawResource(R.raw.all_of_them3);
             reader = new BufferedReader(new InputStreamReader(in));
-
+            events = new ArrayList<AstronomicalEvent>();
             StringBuilder jsonString = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {
