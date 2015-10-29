@@ -26,9 +26,15 @@ import org.json.JSONTokener;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AstroEventsActivity extends ListActivity {
+    public static final String DETAIL_NAME_STRING = "com.example.angel.astroevents.astroeventsactivity.detail_name_string";
+    public static final String DETAIL_DATE_STRING = "com.example.angel.astroevnets.astoreventsactivty.detail_date_string";
+
     ArrayList<AstronomicalEvent> events;
 
 
@@ -72,6 +78,18 @@ public class AstroEventsActivity extends ListActivity {
 
     public void onListItemClick(ListView parent, View v, int position, long id) {
         Intent i = new Intent(this, EventDetails.class);
+        AstronomicalEvent event = events.get(position);
+        String text = String.format("%s %s %s %s %s %s",event.getEvent_name(), event.getDay_of_week(),
+                event.getMonth(), event.getDay(), event.getYear(), event.getTime());
+        i.putExtra(DETAIL_NAME_STRING, text);
+        String date_string;
+
+
+        date_string = event.getYear() + "/" + event.getMonth() + "/" + event.getDay() + " " + event.getTime();
+        i.putExtra(DETAIL_DATE_STRING, date_string);
+
+
+
         startActivity(i);
     }
 
