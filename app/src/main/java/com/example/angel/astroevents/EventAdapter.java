@@ -17,11 +17,11 @@ public class EventAdapter extends ArrayAdapter<AstronomicalEvent> {
     private ArrayList<AstronomicalEvent> mEvents;
     private LayoutInflater mInflater;
 
-    EventAdapter(Context context, int resourceID, ArrayList<AstronomicalEvent> events){
+    public EventAdapter(Context context, int resourceID, ArrayList<AstronomicalEvent> events){
         super(context, resourceID, events);
         this.mContext = context;
         this.mEvents = events;
-        mInflater = (LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
