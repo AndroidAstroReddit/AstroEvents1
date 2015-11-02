@@ -37,13 +37,11 @@ public class AstroEventsActivity extends ListActivity {
 
     ArrayList<AstronomicalEvent> events;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_astro_events);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //     setSupportActionBar(toolbar);
+
         ListView lstView = getListView();
         lstView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstView.setTextFilterEnabled(true);
@@ -79,16 +77,14 @@ public class AstroEventsActivity extends ListActivity {
     public void onListItemClick(ListView parent, View v, int position, long id) {
         Intent i = new Intent(this, EventDetails.class);
         AstronomicalEvent event = events.get(position);
-        String text = String.format("%s %s %s %s %s %s",event.getEvent_name(), event.getDay_of_week(),
+
+        String eventText = String.format("%s %s %s %s %s %s",event.getEvent_name(), event.getDay_of_week(),
                 event.getMonth(), event.getDay(), event.getYear(), event.getTime());
-        i.putExtra(DETAIL_NAME_STRING, text);
-        String date_string;
+        i.putExtra(DETAIL_NAME_STRING, eventText);
 
-
-        date_string = event.getYear() + "/" + event.getMonth() + "/" + event.getDay() + " " + event.getTime();
-        i.putExtra(DETAIL_DATE_STRING, date_string);
-
-
+        String dateString;
+        dateString = event.getYear() + "/" + event.getMonth() + "/" + event.getDay() + " " + event.getTime();
+        i.putExtra(DETAIL_DATE_STRING, dateString);
 
         startActivity(i);
     }

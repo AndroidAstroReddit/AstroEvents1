@@ -1,10 +1,13 @@
 package com.example.angel.astroevents;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -24,19 +27,21 @@ import java.util.Date;
 public class EventDetails extends AppCompatActivity {
 
     TextView tv;
+    Button postButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_details);
-        String text = getIntent().getStringExtra(AstroEventsActivity.DETAIL_NAME_STRING);
+        //TODO: not using this yet
+       String text = getIntent().getStringExtra(AstroEventsActivity.DETAIL_NAME_STRING);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MMM/dd HH:mm");
-        String date_string = getIntent().getStringExtra(AstroEventsActivity.DETAIL_DATE_STRING);
+        String dateString = getIntent().getStringExtra(AstroEventsActivity.DETAIL_DATE_STRING);
         Date date = null;
         try{
-            Log.i("Date String", date_string);
-            date = formatter.parse(date_string);
+            Log.i("Date String", dateString);
+            date = formatter.parse(dateString);
         }catch(ParseException pe){
             Log.e("Date Parsing", pe.toString());
         }
@@ -46,16 +51,23 @@ public class EventDetails extends AppCompatActivity {
         String wuAutoipUrl = String.format(wuAutoipBase, key);
         new RequestCity().execute(wuAutoipUrl);
 
-
-
-
-
-
+//TODO change this test text to one well actually use
         tv = (TextView)findViewById(R.id.test_text);
         if(date !=null) {
             tv.setText(date.toString());
         }
+
+        postButton = (Button) findViewById(R.id.open_post_activity_button);
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(EventDetails.this, EventPost.class);
+                startActivity(i);
+            }
+        });
+
     }
+
     private String getKeyFromRawResource(){
         InputStream keyStream = getResources().openRawResource(R.raw.key);
         BufferedReader keyStreamReader = new BufferedReader(new InputStreamReader(keyStream));
@@ -105,8 +117,6 @@ public class EventDetails extends AppCompatActivity {
                     String city = autoip.getString("city");
                     String state = autoip.getString("state");
                     tv.setText(city + ", " + state);
-
-
                 } catch (JSONException e) {
                     Log.e("Error", "parsing error, check schema?", e);
                     tv.setText("Error fetching city");

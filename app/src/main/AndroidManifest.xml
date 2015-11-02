@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".EventDetails"
             />
+        <activity android:name=".EventPost"
+            />
 
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
