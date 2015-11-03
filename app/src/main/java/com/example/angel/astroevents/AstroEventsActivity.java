@@ -78,8 +78,8 @@ public class AstroEventsActivity extends ListActivity {
         Intent i = new Intent(this, EventDetails.class);
         AstronomicalEvent event = events.get(position);
 
-        String eventText = String.format("%s %s %s %s %s %s",event.getEvent_name(), event.getDay_of_week(),
-                event.getMonth(), event.getDay(), event.getYear(), event.getTime());
+        String[] eventText = {event.getEvent_name(), event.getDay_of_week(),
+                event.getMonth(), event.getDay(), event.getYear(), event.getTime()};
         i.putExtra(DETAIL_NAME_STRING, eventText);
 
         String dateString;
