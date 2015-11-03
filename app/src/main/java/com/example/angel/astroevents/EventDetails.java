@@ -30,7 +30,7 @@ public class EventDetails extends AppCompatActivity {
 
     TextView temperature;
     TextView cloudCover;
-    TextView precipitation;
+
     TextView wind;
     Button postButton;
 
@@ -38,10 +38,10 @@ public class EventDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_details);
-        //TODO: not using this yet
-       String[] eventDetails = getIntent().getStringArrayExtra(AstroEventsActivity.DETAIL_NAME_STRING);
-        AstronomicalEvent event = new AstronomicalEvent(eventDetails[0], eventDetails[1], eventDetails[2], eventDetails[3],
-        eventDetails[4], eventDetails[5]);
+
+       //String[] eventDetails = getIntent().getStringArrayExtra(AstroEventsActivity.DETAIL_NAME_STRING);
+       // AstronomicalEvent event = new AstronomicalEvent(eventDetails[0], eventDetails[1], eventDetails[2], eventDetails[3],
+        //eventDetails[4], eventDetails[5]);
 
 
 
@@ -64,7 +64,6 @@ public class EventDetails extends AppCompatActivity {
 //TODO change this test text to one well actually use
         temperature = (TextView)findViewById(R.id.temperature);
         cloudCover = (TextView)findViewById(R.id.cloud_cover);
-        precipitation = (TextView)findViewById(R.id.precipitation);
         wind = (TextView)findViewById(R.id.wind);
 
 
