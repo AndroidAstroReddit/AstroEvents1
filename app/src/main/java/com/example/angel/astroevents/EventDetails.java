@@ -164,7 +164,7 @@ public class EventDetails extends AppCompatActivity {
                 }
 
                 responseString = buffer.toString();
-                Log.i("Forecast: ", responseString);
+
 
             } catch (Exception e) {
                 Log.e("Error", "Error fetching weather data, see exception for details: ", e);
