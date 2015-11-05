@@ -4,9 +4,15 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/event_details"
+        android:id="@+id/state_and_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/event_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/state_and_city"/>
 
     <TextView
         android:id="@+id/temperature"

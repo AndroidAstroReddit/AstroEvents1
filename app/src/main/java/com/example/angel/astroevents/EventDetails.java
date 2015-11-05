@@ -56,6 +56,8 @@ public class EventDetails extends AppCompatActivity {
             Log.e("Date Parsing", pe.toString());
         }
 
+        details = (TextView) findViewById(R.id.event_details);
+
         temperature = (TextView)findViewById(R.id.temperature);
         cloudCover = (TextView)findViewById(R.id.cloud_cover);
         wind = (TextView)findViewById(R.id.wind);
