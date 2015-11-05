@@ -24,14 +24,13 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class EventDetails extends AppCompatActivity {
 
     TextView details;
     TextView temperature;
     TextView cloudCover;
-
+    TextView state_and_city;
     TextView wind;
     Button postButton;
 
@@ -57,6 +56,12 @@ public class EventDetails extends AppCompatActivity {
             Log.e("Date Parsing", pe.toString());
         }
 
+        temperature = (TextView)findViewById(R.id.temperature);
+        cloudCover = (TextView)findViewById(R.id.cloud_cover);
+        wind = (TextView)findViewById(R.id.wind);
+        state_and_city = (TextView)findViewById(R.id.state_and_city);
+
+
         String key = getKeyFromRawResource();
         String wuAutoipBase = "http://api.wunderground.com/api/%s/geolookup/q/autoip.json";
         String wuAutoipUrl = String.format(wuAutoipBase, key);
@@ -68,9 +73,9 @@ public class EventDetails extends AppCompatActivity {
         wind = (TextView)findViewById(R.id.wind);
 
 
-        String wuForecastBase = "http://api.wunderground.com/api/%s/forecast10day/q/MN/Minneapolis.json";
-        String wuForecastUrl = String.format(wuForecastBase, key);
-        new RequestForecast().execute(wuForecastUrl);
+
+
+
 
         postButton = (Button) findViewById(R.id.open_post_activity_button);
         postButton.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +120,7 @@ public class EventDetails extends AppCompatActivity {
 
                 responseString = buffer.toString();
 
-                Log.e("WEATHER", "String is " + responseString);
+
             } catch (Exception e) {
                 Log.e("Error", "Error fetching weather data, see exception for details: ", e);
             }
@@ -131,9 +136,14 @@ public class EventDetails extends AppCompatActivity {
                     JSONObject autoip = response.getJSONObject("location");
                     String city = autoip.getString("city");
                     String state = autoip.getString("state");
-                    //tv.setText(city + ", " + state);
+                    String requestUrl = autoip.getString("requesturl");
+                    state_and_city.setText("State: " + state + " City: "+ city);
+                    String key = getKeyFromRawResource();
+                    String BaseUrl = "http://api.wunderground.com/api/%s/forecast10day/q/" + requestUrl + ".json";
+                    String forecastUrl = String.format(BaseUrl, key);
+                    new RequestForecast().execute(forecastUrl);
                 } catch (JSONException e) {
-                    Log.e("Error", "parsing error, check schema?", e);
+                    Log.e("Error parsing city", e.toString());
                     //tv.setText("Error fetching city");
                 }
             } else {
@@ -160,8 +170,8 @@ public class EventDetails extends AppCompatActivity {
                 }
 
                 responseString = buffer.toString();
+                Log.i("Forecast", responseString);
 
-                Log.e("WEATHER", "String is " + responseString);
             } catch (Exception e) {
                 Log.e("Error", "Error fetching weather data, see exception for details: ", e);
             }

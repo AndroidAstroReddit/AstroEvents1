@@ -3,6 +3,7 @@ package com.example.angel.astroevents;
 import android.app.ListActivity;
 import android.app.ListFragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,11 +31,15 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class AstroEventsActivity extends ListActivity {
     public static final String DETAIL_NAME_STRING = "com.example.angel.astroevents.astroeventsactivity.detail_name_string";
     public static final String DETAIL_DATE_STRING = "com.example.angel.astroevnets.astoreventsactivty.detail_date_string";
+
+    VideoView mVideoView;
 
     ArrayList<AstronomicalEvent> events;
 
@@ -45,6 +51,10 @@ public class AstroEventsActivity extends ListActivity {
         ListView lstView = getListView();
         lstView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstView.setTextFilterEnabled(true);
+
+//        mVideoView = (VideoView)findViewById(R.id.videoView);
+//        mVideoView.setVideoURI(Uri.parse("android.resource://AstroEvents1/"+R.raw.night_keep));
+
         BufferedReader reader = null;
         try {
             InputStream in = this.getResources().openRawResource(R.raw.all_of_them3);
@@ -58,12 +68,19 @@ public class AstroEventsActivity extends ListActivity {
 
                 JSONArray array = (JSONArray) new JSONTokener(jsonString.toString())
                         .nextValue();
-
+                Calendar calendar = Calendar.getInstance();
+                Log.i("Month", calendar.get(Calendar.YEAR)+"");
                 for (int i = 0; i < array.length(); i++) {
-                    events.add(new AstronomicalEvent(array.getJSONObject(i)));
+                    AstronomicalEvent astronomicalEvent = new AstronomicalEvent(array.getJSONObject(i));
+
+
+                    if(astronomicalEvent.getMonth().equals(calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.US))
+                            && astronomicalEvent.getYear().equals(calendar.get(Calendar.YEAR)+"")){
+                        events.add(astronomicalEvent);
+                    }
                 }
             }
-            Log.i("events.size()", events.size()+" ");
+
         } catch (Exception e) {
             Log.e("Json error", e.toString());
         }
