@@ -27,13 +27,29 @@ public class AstronomicalEvent {
         return year;
     }
 
+    public AstronomicalEvent(String eventName, String eventWeekday, String eventMonth, String eventDay, String eventYear, String eventTime){
+        event_name = eventName;
+        day_of_week = eventWeekday;
+        month = eventMonth;
+        day = eventDay;
+
+        time = eventTime;
+        year = eventYear;
+    }
+
+
     public AstronomicalEvent(JSONObject json) throws JSONException{
-        day = json.getString(JSON_DAY);
-        year = json.getString(JSON_YEAR);
-        day_of_week = json.getString(JSON_DAY_OF_WEEK);
-        month = json.getString(JSON_MONTH);
         event_name = json.getString(JSON_EVENT);
+        month = json.getString(JSON_MONTH);
+
+        day = json.getString(JSON_DAY);
+        day_of_week = json.getString(JSON_DAY_OF_WEEK);
         time = json.getString(JSON_TIME);
+        year = json.getString(JSON_YEAR);
+
+
+
+
 
 
     }
