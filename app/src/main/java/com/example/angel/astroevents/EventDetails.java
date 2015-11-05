@@ -24,13 +24,12 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class EventDetails extends AppCompatActivity {
 
     TextView temperature;
     TextView cloudCover;
-
+    TextView state_and_city;
     TextView wind;
     Button postButton;
 
@@ -59,6 +58,7 @@ public class EventDetails extends AppCompatActivity {
         temperature = (TextView)findViewById(R.id.temperature);
         cloudCover = (TextView)findViewById(R.id.cloud_cover);
         wind = (TextView)findViewById(R.id.wind);
+        state_and_city = (TextView)findViewById(R.id.state_and_city);
 
 
         String key = getKeyFromRawResource();
@@ -131,13 +131,14 @@ public class EventDetails extends AppCompatActivity {
                     JSONObject autoip = response.getJSONObject("location");
                     String city = autoip.getString("city");
                     String state = autoip.getString("state");
-                    temperature.setText("State: " + state + " City: "+ city);
+                    String requestUrl = autoip.getString("requesturl");
+                    state_and_city.setText("State: " + state + " City: "+ city);
                     String key = getKeyFromRawResource();
-                    String BaseUrl = "http://api.wunderground.com/api/%s/forecast10day/q/" + state +"/" + city + ".json";
+                    String BaseUrl = "http://api.wunderground.com/api/%s/forecast10day/q/" + requestUrl + ".json";
                     String forecastUrl = String.format(BaseUrl, key);
                     new RequestForecast().execute(forecastUrl);
                 } catch (JSONException e) {
-                    Log.e("Error", "parsing error, check schema?", e);
+                    Log.e("Error parsing city", e.toString());
                     //tv.setText("Error fetching city");
                 }
             } else {
@@ -164,7 +165,7 @@ public class EventDetails extends AppCompatActivity {
                 }
 
                 responseString = buffer.toString();
-
+                Log.i("Forecast", responseString);
 
             } catch (Exception e) {
                 Log.e("Error", "Error fetching weather data, see exception for details: ", e);
