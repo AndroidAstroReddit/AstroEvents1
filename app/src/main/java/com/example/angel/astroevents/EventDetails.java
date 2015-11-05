@@ -114,7 +114,7 @@ public class EventDetails extends AppCompatActivity {
 
                 responseString = buffer.toString();
 
-                Log.e("WEATHER", "String is " + responseString);
+
             } catch (Exception e) {
                 Log.e("Error", "Error fetching weather data, see exception for details: ", e);
             }
@@ -160,7 +160,7 @@ public class EventDetails extends AppCompatActivity {
 
                 responseString = buffer.toString();
 
-                Log.e("WEATHER", "String is " + responseString);
+
             } catch (Exception e) {
                 Log.e("Error", "Error fetching weather data, see exception for details: ", e);
             }

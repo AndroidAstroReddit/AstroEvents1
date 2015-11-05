@@ -71,7 +71,7 @@ public class AstroEventsActivity extends ListActivity {
                     events.add(new AstronomicalEvent(array.getJSONObject(i)));
                 }
             }
-            Log.i("events.size()", events.size()+" ");
+
         } catch (Exception e) {
             Log.e("Json error", e.toString());
         }
