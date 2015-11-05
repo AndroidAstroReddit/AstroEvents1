@@ -50,8 +50,8 @@ public class AstroEventsActivity extends ListActivity {
         lstView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstView.setTextFilterEnabled(true);
 
-        mVideoView = (VideoView)findViewById(R.id.videoView);
-        mVideoView.setVideoURI(Uri.parse("android.resource://AstroEvents1/"+R.raw.night_keep));
+//        mVideoView = (VideoView)findViewById(R.id.videoView);
+//        mVideoView.setVideoURI(Uri.parse("android.resource://AstroEvents1/"+R.raw.night_keep));
 
         BufferedReader reader = null;
         try {

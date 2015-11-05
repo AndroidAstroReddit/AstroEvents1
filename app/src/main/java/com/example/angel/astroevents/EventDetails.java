@@ -56,20 +56,21 @@ public class EventDetails extends AppCompatActivity {
             Log.e("Date Parsing", pe.toString());
         }
 
-        String key = getKeyFromRawResource();
-        String wuAutoipBase = "http://api.wunderground.com/api/%s/geolookup/q/autoip.json";
-        String wuAutoipUrl = String.format(wuAutoipBase, key);
-        new RequestCity().execute(wuAutoipUrl);
-
-//TODO change this test text to one well actually use
         temperature = (TextView)findViewById(R.id.temperature);
         cloudCover = (TextView)findViewById(R.id.cloud_cover);
         wind = (TextView)findViewById(R.id.wind);
 
 
-        String wuForecastBase = "http://api.wunderground.com/api/%s/forecast10day/q/MN/Minneapolis.json";
-        String wuForecastUrl = String.format(wuForecastBase, key);
-        new RequestForecast().execute(wuForecastUrl);
+        String key = getKeyFromRawResource();
+        String wuAutoipBase = "http://api.wunderground.com/api/%s/geolookup/q/autoip.json";
+        String wuAutoipUrl = String.format(wuAutoipBase, key);
+        new RequestCity().execute(wuAutoipUrl);
+
+
+
+
+
+
 
         postButton = (Button) findViewById(R.id.open_post_activity_button);
         postButton.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +131,11 @@ public class EventDetails extends AppCompatActivity {
                     JSONObject autoip = response.getJSONObject("location");
                     String city = autoip.getString("city");
                     String state = autoip.getString("state");
-                    //tv.setText(city + ", " + state);
+                    temperature.setText("State: " + state + " City: "+ city);
+                    String key = getKeyFromRawResource();
+                    String BaseUrl = "http://api.wunderground.com/api/%s/forecast10day/q/" + state +"/" + city + ".json";
+                    String forecastUrl = String.format(BaseUrl, key);
+                    new RequestForecast().execute(forecastUrl);
                 } catch (JSONException e) {
                     Log.e("Error", "parsing error, check schema?", e);
                     //tv.setText("Error fetching city");
@@ -159,7 +164,7 @@ public class EventDetails extends AppCompatActivity {
                 }
 
                 responseString = buffer.toString();
-
+                Log.i("Forecast: ", responseString);
 
             } catch (Exception e) {
                 Log.e("Error", "Error fetching weather data, see exception for details: ", e);

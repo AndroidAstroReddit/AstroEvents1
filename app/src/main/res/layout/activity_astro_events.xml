@@ -4,7 +4,7 @@ change text color to fit background
 figure out what all we want in event details
 do we want a webview or not
 -->
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -24,4 +24,4 @@ do we want a webview or not
             android:id="@+id/videoView"/>
 
 
-</RelativeLayout>
+</LinearLayout>

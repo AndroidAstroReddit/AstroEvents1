@@ -4,19 +4,30 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/state_and_city"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/temperature"
+        android:layout_alignStart="@+id/temperature" />
+
+    <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="placeholder text"
-        />
+        android:layout_below="@+id/state_and_city"
+        android:layout_alignLeft="@+id/cloud_cover"
+        android:layout_alignStart="@+id/cloud_cover" />
 
     <TextView
         android:id="@+id/cloud_cover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="placeholder text"
-        android:layout_below="@id/temperature"
-        />
+        android:layout_below="@+id/temperature"
+        android:layout_alignLeft="@+id/wind"
+        android:layout_alignStart="@+id/wind" />
 
 
 
@@ -25,8 +36,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="placeholder text"
-        android:layout_below="@id/cloud_cover"
-        />
+        android:layout_below="@+id/cloud_cover"
+        android:layout_toLeftOf="@+id/open_post_activity_button"
+        android:layout_toStartOf="@+id/open_post_activity_button"
+        android:layout_marginRight="59dp"
+        android:layout_marginEnd="59dp" />
 
     <Button
         android:id="@+id/open_post_activity_button"
