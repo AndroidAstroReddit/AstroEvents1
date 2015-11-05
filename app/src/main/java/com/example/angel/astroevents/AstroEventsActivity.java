@@ -31,7 +31,9 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class AstroEventsActivity extends ListActivity {
     public static final String DETAIL_NAME_STRING = "com.example.angel.astroevents.astroeventsactivity.detail_name_string";
@@ -66,9 +68,16 @@ public class AstroEventsActivity extends ListActivity {
 
                 JSONArray array = (JSONArray) new JSONTokener(jsonString.toString())
                         .nextValue();
-
+                Calendar calendar = Calendar.getInstance();
+                Log.i("Month", calendar.get(Calendar.YEAR)+"");
                 for (int i = 0; i < array.length(); i++) {
-                    events.add(new AstronomicalEvent(array.getJSONObject(i)));
+                    AstronomicalEvent astronomicalEvent = new AstronomicalEvent(array.getJSONObject(i));
+
+
+                    if(astronomicalEvent.getMonth().equals(calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.US))
+                            && astronomicalEvent.getYear().equals(calendar.get(Calendar.YEAR)+"")){
+                        events.add(astronomicalEvent);
+                    }
                 }
             }
 
