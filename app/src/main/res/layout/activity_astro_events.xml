@@ -15,8 +15,13 @@ do we want a webview or not
             android:id="@+id/android:list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contextClickable="false" />
+            android:contextClickable="false"
+            android:background="@android:color/transparent"/>
 
+        <VideoView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/videoView"/>
 
 
 </LinearLayout>
