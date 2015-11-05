@@ -3,6 +3,9 @@ package com.example.angel.astroevents;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  * Created by boydjohnson on 10/26/15.
  */
@@ -110,4 +113,9 @@ public class AstronomicalEvent {
     public String toString(){
         return event_name;
     }
+
+
+
+
+
 }

@@ -28,6 +28,7 @@ import java.util.GregorianCalendar;
 
 public class EventDetails extends AppCompatActivity {
 
+    TextView details;
     TextView temperature;
     TextView cloudCover;
 
@@ -61,7 +62,7 @@ public class EventDetails extends AppCompatActivity {
         String wuAutoipUrl = String.format(wuAutoipBase, key);
         new RequestCity().execute(wuAutoipUrl);
 
-//TODO change this test text to one well actually use
+        details = (TextView)findViewById(R.id.event_details);
         temperature = (TextView)findViewById(R.id.temperature);
         cloudCover = (TextView)findViewById(R.id.cloud_cover);
         wind = (TextView)findViewById(R.id.wind);
@@ -179,16 +180,21 @@ public class EventDetails extends AppCompatActivity {
                     AstronomicalEvent event = new AstronomicalEvent(eventDetails[0], eventDetails[1], eventDetails[2], eventDetails[3].replaceAll("\\s", ""),
                             eventDetails[4].replaceAll("\\s", ""), eventDetails[5]);
 
-                    for (int i = 0; i < forecast.length(); i++) {
-                        if (Integer.parseInt(event.getDay()) == Integer.parseInt(forecast.getJSONObject(i).getJSONObject("date").getString("day"))
-                                && event.getMonth().equals(forecast.getJSONObject(i).getJSONObject("date").getString("monthname_short"))
-                                && Integer.parseInt(event.getYear()) == Integer.parseInt(forecast.getJSONObject(i).getJSONObject("date").getString("year"))) {
-                            temperature.setText("The high temp for the event will be " + forecast.getJSONObject(i)
-                            .getJSONObject("high").getString("fahrenheit") + "F, and the low will be " + forecast.getJSONObject(i)
+                    for (int i = 0; i < forecast.length(); i++){
+                        JSONObject dayDetails = forecast.getJSONObject(i);
+
+                        if (Integer.parseInt(event.getDay()) == Integer.parseInt(dayDetails.getJSONObject("date").getString("day"))
+                                && event.getMonth().equals(dayDetails.getJSONObject("date").getString("monthname_short"))
+                                && Integer.parseInt(event.getYear()) == Integer.parseInt(dayDetails.getJSONObject("date").getString("year"))) {
+                            details.setText("Forecast for the " + event.getEvent_name() + " event on " + event.getDay_of_week() + ", " +
+                            event.getMonth() + " " + event.getDay()  + ":");
+                            temperature.setText("High: " + dayDetails
+                            .getJSONObject("high").getString("fahrenheit") + "F, Low: " + dayDetails
                                     .getJSONObject("low").getString("fahrenheit") + "F");
-                            cloudCover.setText(forecast.getJSONObject(i).getString("conditions"));
-                            wind.setText(forecast.getJSONObject(i).getJSONObject("avewind").getString("mph") + " mph wind with gusts of "
-                            + forecast.getJSONObject(i).getJSONObject("maxwind").getString("mph"));
+                            cloudCover.setText(dayDetails.getString("conditions") +" (" + dayDetails.getString("pop") + "% chance of precipitation, "
+                                    + dayDetails.getJSONObject("qpf_allday").getString("in") + " inches of estimated precipitation)");
+                            wind.setText(dayDetails.getJSONObject("avewind").getString("mph") + " mph wind with gusts of "
+                                    + dayDetails.getJSONObject("maxwind").getString("mph"));
 
                             break;
                         }
@@ -196,10 +202,10 @@ public class EventDetails extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     Log.e("Error", "parsing error, check schema?", e);
-                    temperature.setText("Error fetching city json exception");
+                    temperature.setText("Error fetching forecast json exception");
                 }
             } else {
-                temperature.setText("Error fetching city");
+                temperature.setText("Error fetching forecast");
                 Log.e("Error", "Result was null, check doInBackground for errors");
             }
         }
