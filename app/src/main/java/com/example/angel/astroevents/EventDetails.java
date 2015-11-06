@@ -39,22 +39,7 @@ public class EventDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_details);
 
-       //String[] eventDetails = getIntent().getStringArrayExtra(AstroEventsActivity.DETAIL_NAME_STRING);
-       // AstronomicalEvent event = new AstronomicalEvent(eventDetails[0], eventDetails[1], eventDetails[2], eventDetails[3],
-        //eventDetails[4], eventDetails[5]);
 
-
-
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MMM/dd HH:mm");
-        String dateString = getIntent().getStringExtra(AstroEventsActivity.DETAIL_DATE_STRING);
-        Date date = null;
-        try{
-            Log.i("Date String", dateString);
-            date = formatter.parse(dateString);
-        }catch(ParseException pe){
-            Log.e("Date Parsing", pe.toString());
-        }
 
         details = (TextView) findViewById(R.id.event_details);
 

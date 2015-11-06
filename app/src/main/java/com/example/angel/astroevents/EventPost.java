@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -47,10 +49,11 @@ public class EventPost extends AppCompatActivity {
         @Override
         protected String doInBackground(String... urls) {
             String responseString = "Success";
-            String consumerKeyStr = "K6P63fiO4g6waTtpTZhyIVAKS";
-            String consumerSecretStr = "ZmgggosdkQZjX0Nny5VSk4ucNVgd3Kfk5AhSzs2i1La3pedLIB";
-            String accessTokenStr = "4139877618-KBqTdoWeYPsNgAGPakUmSN8YhxxLAUQRYAgqs5Q";
-            String accessTokenSecretStr = "VvG8lLGpijjp0leGjKx3gSjVvupr1AjCpK6fQ2OEJhRpK";
+            String[] tokens = getKeysandTokens();
+            String consumerKeyStr = tokens[0];
+            String consumerSecretStr = tokens[1];
+            String accessTokenStr = tokens[2];
+            String accessTokenSecretStr = tokens[3];
 
             try {
                 Twitter twitter = new TwitterFactory().getInstance();
@@ -79,6 +82,24 @@ public class EventPost extends AppCompatActivity {
                 //tv.setText("Error fetching city");
                 Log.e("Error", "Result was null, check doInBackground for errors");
             }
+        }
+    }
+
+
+    private String[] getKeysandTokens(){
+        String[] keys = new String[4];
+        InputStream keyStream = getResources().openRawResource(R.raw.tokens);
+        BufferedReader keyStreamReader = new BufferedReader(new InputStreamReader(keyStream));
+        try{
+            int i=0;
+            while(keyStreamReader.readLine()!=null) {
+                keys[i] = keyStreamReader.readLine();
+                i++;
+            }
+            return keys;
+        } catch (IOException e){
+            Log.e("Error","Error reading secret key from raw resource file");
+            return null;
         }
     }
 }
