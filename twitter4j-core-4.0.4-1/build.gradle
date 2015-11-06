@@ -1,0 +1,7 @@
+configurations.create("default")
+artifacts.add("default", file('twitter4j-core-4.0.4-1.jar'))
+dependencies {
+
+    apply plugin: 'java'
+    compile 'org.twitter4j:twitter4j:4.0.4'
+}
