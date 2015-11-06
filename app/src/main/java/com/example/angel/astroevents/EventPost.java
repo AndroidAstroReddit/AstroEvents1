@@ -92,7 +92,7 @@ public class EventPost extends AppCompatActivity {
         BufferedReader keyStreamReader = new BufferedReader(new InputStreamReader(keyStream));
         try{
             int i=0;
-            while(keyStreamReader.readLine()!=null) {
+            while(i<4) {
                 keys[i] = keyStreamReader.readLine();
                 i++;
             }
