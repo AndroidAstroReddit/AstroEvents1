@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        //Use found here:http://stackoverflow.com/questions/15675944/how-to-play-video-from-raw-folder-with-android-device
         mSplashVideo = (VideoView)findViewById(R.id.splash_video);
         String path = "android.resource://"+getPackageName()+"/" + R.raw.night_keep;
         Uri uri = Uri.parse(path);
