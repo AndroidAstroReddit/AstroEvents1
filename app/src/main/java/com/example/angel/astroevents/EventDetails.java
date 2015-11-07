@@ -183,7 +183,7 @@ public class EventDetails extends AppCompatActivity {
                         if (Integer.parseInt(event.getDay()) == Integer.parseInt(dayDetails.getJSONObject("date").getString("day"))
                                 && event.getMonth().equals(dayDetails.getJSONObject("date").getString("monthname_short"))
                                 && Integer.parseInt(event.getYear()) == Integer.parseInt(dayDetails.getJSONObject("date").getString("year"))) {
-                            details.setText("Forecast for the " + event.getEvent_name() + " event on " + event.getDay_of_week() + ", " +
+                            details.setText("Wunderground forecast for the " + event.getEvent_name() + " event on " + event.getDay_of_week() + ", " +
                             event.getMonth() + " " + event.getDay()  + ":");
                             temperature.setText("High: " + dayDetails
                             .getJSONObject("high").getString("fahrenheit") + "F, Low: " + dayDetails

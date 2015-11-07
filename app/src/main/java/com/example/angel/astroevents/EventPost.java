@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,6 +49,7 @@ public class EventPost extends AppCompatActivity {
     }
 
     class postToTwitter extends AsyncTask<String, String, String> {
+        //We used the twitter4j library for posting to twitter.
         @Override
         protected String doInBackground(String... urls) {
             String responseString = "Success";
@@ -69,6 +71,8 @@ public class EventPost extends AppCompatActivity {
                 twitter.updateStatus(postContentString);
 
                 System.out.println("Successfully updated the status in Twitter.");
+
+
             } catch (TwitterException te) {
                 te.printStackTrace();
             }
@@ -80,6 +84,9 @@ public class EventPost extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result != null) {
                     Log.i("Success", "result");
+                Toast.makeText(getApplicationContext(), "Post successful!", Toast.LENGTH_LONG).show();
+                postContent.setText("");
+
             } else {
                 //tv.setText("Error fetching city");
                 Log.e("Error", "Result was null, check doInBackground for errors");
