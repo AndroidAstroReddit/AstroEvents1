@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,23 +27,24 @@ import java.net.URL;
 
 public class EventPost extends AppCompatActivity {
     Button postButton;
+    EditText postContent;
+    String postContentString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_post);
         postButton = (Button) findViewById(R.id.post_button);
+        postContent = (EditText) findViewById(R.id.post_edittext);
 
         postButton.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
+                                              postContentString = postContent.getText().toString();
                                               new postToTwitter().execute();
-
                                           }
                                       }
             );
-
-
     }
 
     class postToTwitter extends AsyncTask<String, String, String> {
@@ -64,7 +66,7 @@ public class EventPost extends AppCompatActivity {
 
                 twitter.setOAuthAccessToken(accessToken);
 
-                twitter.updateStatus("test");
+                twitter.updateStatus(postContentString);
 
                 System.out.println("Successfully updated the status in Twitter.");
             } catch (TwitterException te) {

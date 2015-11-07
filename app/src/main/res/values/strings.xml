@@ -8,10 +8,10 @@
         <item>Pacific (UTC-08:00)</item>
     </string-array>
 
-    <string name="posting_title">Title of post:</string>
-    <string name="posting_body">Body of post:</string>
-    <string name="posting_create">Create post on Reddit</string>
-    <string name="post_to">Post to Reddit</string>
+
+    <string name="posting_body">Body of Twitter post:</string>
+    <string name="posting_create">Create post on Twitter</string>
+    <string name="post_to">Post to Twitter</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="getListButton">Get List of Events!</string>
 </resources>

@@ -3,33 +3,21 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/posting_title"
-        />
 
-    <EditText
-        android:id="@+id/title_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_text"
-        />
 
     <TextView
-        android:id="@+id/body_text"
+        android:id="@+id/post_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/posting_body"
-        android:layout_below="@id/title_edittext"
+
         />
 
     <EditText
-        android:id="@+id/body_edittext"
+        android:id="@+id/post_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/body_text"
+        android:layout_below="@id/post_text"
         />
 
     <Button
