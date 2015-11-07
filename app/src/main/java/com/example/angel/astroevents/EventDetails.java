@@ -1,5 +1,12 @@
 package com.example.angel.astroevents;
 
+/*
+* This class implements the event details screen after a person has pushed a list-item
+* It has async task classes for requesting the city and state that the divice is in
+* and requesting the forecast
+*
+ */
+
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -179,10 +186,14 @@ public class EventDetails extends AppCompatActivity {
 
                     for (int i = 0; i < forecast.length(); i++){
                         JSONObject dayDetails = forecast.getJSONObject(i);
-
+                        //for each of the days in the 10 day forecast
+                        //then checks to make sure the event (What was just pressed) day, month, and year is the same as
+                        //what is in the forecast
                         if (Integer.parseInt(event.getDay()) == Integer.parseInt(dayDetails.getJSONObject("date").getString("day"))
                                 && event.getMonth().equals(dayDetails.getJSONObject("date").getString("monthname_short"))
                                 && Integer.parseInt(event.getYear()) == Integer.parseInt(dayDetails.getJSONObject("date").getString("year"))) {
+
+                            //Then sets the textviews with details from both the event and forecast's daydetails
                             details.setText("Wunderground forecast for the " + event.getEvent_name() + " event on " + event.getDay_of_week() + ", " +
                             event.getMonth() + " " + event.getDay()  + ":");
                             temperature.setText("High: " + dayDetails

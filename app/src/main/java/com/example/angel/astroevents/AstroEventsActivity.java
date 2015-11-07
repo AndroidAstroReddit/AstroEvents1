@@ -23,6 +23,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+/*
+  The list activity that is the second screen after the splash video screen. This class reads from a file in the
+  raw folder a json file that has Astronomical Activities.
+ */
+
 public class AstroEventsActivity extends ListActivity {
     public static final String DETAIL_NAME_STRING = "com.example.angel.astroevents.astroeventsactivity.detail_name_string";
     public static final String DETAIL_DATE_STRING = "com.example.angel.astroevnets.astoreventsactivty.detail_date_string";
@@ -40,8 +45,6 @@ public class AstroEventsActivity extends ListActivity {
         lstView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstView.setTextFilterEnabled(true);
 
-//        mVideoView = (VideoView)findViewById(R.id.videoView);
-//        mVideoView.setVideoURI(Uri.parse("android.resource://AstroEvents1/"+R.raw.night_keep));
 
         BufferedReader reader = null;
         try {

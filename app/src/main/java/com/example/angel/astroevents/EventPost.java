@@ -1,6 +1,8 @@
 package com.example.angel.astroevents;
 
-
+/*
+ This class posts to twitter and displays a Toast when the successful post has been made.
+ */
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -83,12 +85,10 @@ public class EventPost extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
-                    Log.i("Success", "result");
                 Toast.makeText(getApplicationContext(), "Post successful!", Toast.LENGTH_LONG).show();
                 postContent.setText("");
 
             } else {
-                //tv.setText("Error fetching city");
                 Log.e("Error", "Result was null, check doInBackground for errors");
             }
         }
