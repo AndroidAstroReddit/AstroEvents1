@@ -194,6 +194,9 @@ public class EventDetails extends AppCompatActivity {
                                     + dayDetails.getJSONObject("maxwind").getString("mph"));
 
                             break;
+                        } else {
+                            details.setText("Wunderground forecast for the " + event.getEvent_name() + " event on " + event.getDay_of_week() + ", " +
+                                    event.getMonth() + " " + event.getDay()  + " is unavailable.");
                         }
                     }
 
