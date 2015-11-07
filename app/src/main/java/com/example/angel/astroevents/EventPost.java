@@ -52,7 +52,7 @@ public class EventPost extends AppCompatActivity {
         //We used the twitter4j library for posting to twitter.
         @Override
         protected String doInBackground(String... urls) {
-            String responseString = "Success";
+            String responseString = null;
             String[] tokens = getKeysandTokens();
             String consumerKeyStr = tokens[0];
             String consumerSecretStr = tokens[1];
@@ -70,7 +70,7 @@ public class EventPost extends AppCompatActivity {
 
                 twitter.updateStatus(postContentString);
 
-                System.out.println("Successfully updated the status in Twitter.");
+                responseString = "Success";
 
 
             } catch (TwitterException te) {
