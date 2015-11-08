@@ -131,10 +131,10 @@ public class EventDetails extends AppCompatActivity {
                     new RequestForecast().execute(forecastUrl);
                 } catch (JSONException e) {
                     Log.e("Error parsing city", e.toString());
-                    //tv.setText("Error fetching city");
+                    state_and_city.setText("Error fetching city");
                 }
             } else {
-                //tv.setText("Error fetching city");
+                state_and_city.setText("Error fetching city");
                 Log.e("Error", "Result was null, check doInBackground for errors");
             }
         }
