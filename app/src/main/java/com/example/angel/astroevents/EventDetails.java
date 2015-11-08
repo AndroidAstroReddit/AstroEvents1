@@ -138,10 +138,10 @@ public class EventDetails extends AppCompatActivity {
                     new RequestForecast().execute(forecastUrl);
                 } catch (JSONException e) {
                     Log.e("Error parsing city", e.toString());
-                    //tv.setText("Error fetching city");
+                    state_and_city.setText("Error fetching city");
                 }
             } else {
-                //tv.setText("Error fetching city");
+                state_and_city.setText("Error fetching city");
                 Log.e("Error", "Result was null, check doInBackground for errors");
             }
         }
@@ -205,6 +205,9 @@ public class EventDetails extends AppCompatActivity {
                                     + dayDetails.getJSONObject("maxwind").getString("mph"));
 
                             break;
+                        } else {
+                            details.setText("Wunderground forecast for the " + event.getEvent_name() + " event on " + event.getDay_of_week() + ", " +
+                                    event.getMonth() + " " + event.getDay()  + " is unavailable.");
                         }
                     }
 

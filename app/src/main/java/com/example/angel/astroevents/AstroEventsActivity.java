@@ -38,8 +38,10 @@ public class AstroEventsActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_astro_events);
+
 
         ListView lstView = getListView();
         lstView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
